@@ -1,4 +1,4 @@
-# Roll2Dice
+# Dice2Roll
 
 A new Flutter project.
 
