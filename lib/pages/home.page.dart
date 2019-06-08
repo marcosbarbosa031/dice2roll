@@ -93,23 +93,17 @@ class _HomePageState extends State<HomePage> {
                       // Delete Icon
                       Expanded(
                         flex: 1,
-                        child: Ink(
-                          decoration: ShapeDecoration(
+                        child: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: IconButton(
+                            icon: Icon(Icons.cancel),
+                            tooltip: "Remover",
                             color: Colors.redAccent,
-                            shape: CircleBorder()
+                            onPressed: () {
+                              isDisabled ? null : _removeThisRow(i);
+                            }
                           ),
-                          child: SizedBox(
-                            height: 40,
-                            width: 40,
-                            child: IconButton(
-                              icon: Icon(Icons.delete_forever),
-                              tooltip: "Remover",
-                              color: Colors.white,
-                              onPressed: () {
-                                isDisabled ? null : _removeThisRow(i);
-                              }
-                            ),
-                          )
                         )
                       ),
 
@@ -250,7 +244,10 @@ class _HomePageState extends State<HomePage> {
                     height: 30,
                     child: Text(
                       "$total",
-                      style: Theme.of(context).textTheme.title
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontSize: 24
+                      ),
                     ),
                   )
                 ],
@@ -265,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                     child: RaisedButton.icon(
                       icon: Icon(Icons.add),
                       label: Text("Adicionar"),
-                      textColor: Colors.deepPurpleAccent,
+                      textColor: Colors.deepPurple,
                       color: Colors.greenAccent,
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                       onPressed: () {
