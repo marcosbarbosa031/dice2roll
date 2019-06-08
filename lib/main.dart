@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_project/pages/login.page.dart';
-import 'package:my_project/pages/home.page.dart';
+import 'package:Dice2Roll/pages/login.page.dart';
+import 'package:Dice2Roll/pages/home.page.dart';
 
 void main() => runApp(MyApp());
 
