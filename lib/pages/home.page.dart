@@ -11,11 +11,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedButton = 1;
   final rng = new Random();
   List<Map<String, dynamic>> dices = [{'qtd': 1, 'type': 6, 'result': ""}];
   String result = "";
   String total = "";
+
+  /// Create the List of Widgets that represents the Dice Row
+  /// 
+  /// @param dices The List of a Map that represents a dice row
 
   List<Widget> getDiceRows (List dices) {
     List<Widget> diceRows = new List<Widget>();
@@ -90,6 +93,10 @@ class _HomePageState extends State<HomePage> {
     return diceRows;
   }
 
+  /// Roll the dices and update it's results
+  /// 
+  /// @param dices The List of a Map that represents a dice row
+
   void _rollDice(List dices) {
     int roll = 0;
     int sumTotal = 0;
@@ -120,6 +127,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  /// Adds another Dice row with default values
+
   void _addDice() {
     dices.add({'qtd': 1, 'type': 6, 'result': ""});
     List<Map<String, dynamic>> aux = dices;
@@ -127,6 +136,8 @@ class _HomePageState extends State<HomePage> {
      dices = aux;
     });
   }
+
+  /// Deletes the last Dice row but not if there's only one
 
   void _deleteDice() {
     if (dices.length > 1) {
@@ -141,7 +152,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xfff7f7f7),
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -156,6 +166,7 @@ class _HomePageState extends State<HomePage> {
                   children: getDiceRows(dices),
                 ),
               ),
+              
               // Result with Total Amount
               Column(
                 children: <Widget>[
@@ -168,6 +179,7 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
+
               // Bottom Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -217,37 +229,6 @@ class _HomePageState extends State<HomePage> {
           )
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: _selectedButton,
-      //   onTap: (int index) {
-      //     switch (index) {
-      //       case 0:
-      //         _addDice();
-      //         break;
-      //       case 1:
-      //         _rollDice(dices);
-      //         break;
-      //       case 2:
-      //         _deleteDice();
-      //         break;
-      //       default:
-      //     }
-      //   },
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.add),
-      //       title: Text("Adicionar")
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.autorenew),
-      //       title: Text("Rolar")
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.delete_forever),
-      //       title: Text("Remover")
-      //     ),
-      //   ],
-      // ),
     );
   }
 }
