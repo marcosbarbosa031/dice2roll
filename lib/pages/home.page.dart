@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> dices = [{'qtd': 1, 'type': 6, 'result': "", 'mod': 0}];
   String result = "";
   String total = "";
-  bool isDisabled = true;
+  bool _isDisabled = true;
 
   /// Create the List of Widgets that represents the Dice Row.
   /// 
@@ -100,9 +100,7 @@ class _HomePageState extends State<HomePage> {
                             icon: Icon(Icons.cancel),
                             tooltip: "Remover",
                             color: Colors.redAccent,
-                            onPressed: () {
-                              isDisabled ? null : _removeThisRow(i);
-                            }
+                            onPressed: _isDisabled ? null : () {_removeThisRow(i);}
                           ),
                         )
                       ),
@@ -195,7 +193,7 @@ class _HomePageState extends State<HomePage> {
     List<Map<String, dynamic>> aux = dices;
     setState(() {
      dices = aux;
-     isDisabled = false;
+     _isDisabled = false;
     });
   }
 
@@ -213,7 +211,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       setState(() {
         dices = aux;
-        isDisabled = true;
+        _isDisabled = true;
       });
 
     }
@@ -241,7 +239,7 @@ class _HomePageState extends State<HomePage> {
               Column(
                 children: <Widget>[
                   Container(
-                    height: 30,
+                    height: 36,
                     child: Text(
                       "$total",
                       style: TextStyle(
