@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:Dice2Roll/pages/login.page.dart';
 import 'package:Dice2Roll/pages/home.page.dart';
