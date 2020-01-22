@@ -1,20 +1,14 @@
-import 'dart:math';
 
-import 'package:Dice2Roll/authentication/authentication.dart';
-import 'package:Dice2Roll/dice_roll/dice.roll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:math';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class DiceRoll extends StatefulWidget {
 
-  final String title;
-
-  _HomePageState createState() => _HomePageState();
+  _DiceRollState createState() => _DiceRollState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _DiceRollState extends State<DiceRoll> {
   final rng = new Random();
   List<Map<String, dynamic>> dices = [{'qtd': 1, 'type': 6, 'result': "", 'mod': 0}];
   String result = "";
@@ -222,25 +216,69 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.exit_to_app),
-            label: Text("Sair"),
-            textColor: Colors.white,
-            color: Colors.deepPurple,
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
-            },
-          )
-        ]
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            // Row of Dices
+            Expanded(
+              child: ListView(
+                children: getDiceRows(dices),
+              ),
+            ),
+
+            // Result with Total Amount
+            Column(
+              children: <Widget>[
+                Container(
+                  height: 36,
+                  child: Text(
+                    "$total",
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 24
+                    ),
+                  ),
+                )
+              ],
+            ),
+
+            // Bottom Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.only(right: 5),
+                  child: RaisedButton.icon(
+                    icon: Icon(Icons.add),
+                    label: Text("Adicionar"),
+                    textColor: Colors.deepPurple,
+                    color: Colors.greenAccent,
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                    onPressed: () {
+                      _addDice();
+                    },
+                  )
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 5, left: 5),
+                  child: RaisedButton.icon(
+                    icon: Icon(Icons.autorenew),
+                    label: Text("Rolar"),
+                    textColor: Colors.white,
+                    color: Colors.deepPurpleAccent,
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                    onPressed: () {
+                      _rollDice(dices);
+                    },
+                  )
+                ),
+              ],
+            )
+          ],
+        )
       ),
-      body: DiceRoll()
     );
   }
-}
-
-class _removeThisRow {
 }
