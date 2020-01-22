@@ -1,6 +1,7 @@
 
 
-import 'package:Dice2Roll/login/login.dart';
+import 'package:Dyce/common/theme.data.dart';
+import 'package:Dyce/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,6 +45,9 @@ class _LoginFormState extends State<LoginForm> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+
+                  Image.asset('assets/icon_w.png'),
+                  
                   TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     style:  new TextStyle(color: Colors.white, fontSize: 20),
@@ -72,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
                       color: Colors.white,
                       child: Text(
                         "Entrar",
-                        style: TextStyle(color: Colors.deepPurpleAccent),
+                        style: TextStyle(color: AppColors.primaryColor),
                       ),
                     ),
                   )

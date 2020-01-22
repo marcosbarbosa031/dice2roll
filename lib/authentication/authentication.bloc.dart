@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:Dice2Roll/user_repository/user.repository.dart';
-import 'package:Dice2Roll/authentication/authentication.dart';
+import 'package:Dyce/user_repository/user.repository.dart';
+import 'package:Dyce/authentication/authentication.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:Dice2Roll/user_repository/user.repository.dart';
-import 'package:Dice2Roll/authentication/authentication.dart';
-import 'package:Dice2Roll/login/login.dart';
+import 'package:Dyce/user_repository/user.repository.dart';
+import 'package:Dyce/authentication/authentication.dart';
+import 'package:Dyce/login/login.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;

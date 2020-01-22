@@ -1,4 +1,5 @@
 
+import 'package:Dyce/common/theme.data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
@@ -240,7 +241,7 @@ class _DiceRollState extends State<DiceRoll> {
                   child: Text(
                     "$total",
                     style: TextStyle(
-                      color: Colors.deepPurple,
+                      color: AppColors.primaryColor,
                       fontSize: 24
                     ),
                   ),
@@ -257,8 +258,8 @@ class _DiceRollState extends State<DiceRoll> {
                   child: RaisedButton.icon(
                     icon: Icon(Icons.add),
                     label: Text("Adicionar"),
-                    textColor: Colors.deepPurple,
-                    color: Colors.greenAccent,
+                    textColor: AppColors.primaryColor,
+                    color: AppColors.sencondaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () {
                       _addDice();
@@ -271,7 +272,7 @@ class _DiceRollState extends State<DiceRoll> {
                     icon: Icon(Icons.autorenew),
                     label: Text("Rolar"),
                     textColor: Colors.white,
-                    color: Colors.deepPurpleAccent,
+                    color: AppColors.primaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () {
                       _rollDice(dices);

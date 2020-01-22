@@ -1,4 +1,4 @@
-package com.example.dice2roll;
+package com.example.Dyce;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

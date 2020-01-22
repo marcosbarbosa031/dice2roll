@@ -1,9 +1,7 @@
-import 'dart:math';
-
-import 'package:Dice2Roll/authentication/authentication.dart';
-import 'package:Dice2Roll/dice_roll/dice.roll.dart';
+import 'package:Dyce/authentication/authentication.dart';
+import 'package:Dyce/common/theme.data.dart';
+import 'package:Dyce/dice_roll/dice.roll.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +23,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.exit_to_app),
             label: Text("Sair"),
             textColor: Colors.white,
-            color: Colors.deepPurple,
+            color: AppColors.primaryColor,
             onPressed: () {
               BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
             },

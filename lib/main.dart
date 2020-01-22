@@ -1,13 +1,14 @@
-import 'package:Dice2Roll/authentication/authentication.dart';
-import 'package:Dice2Roll/common/common.dart';
-import 'package:Dice2Roll/home/home.page.dart';
+import 'package:Dyce/authentication/authentication.dart';
+import 'package:Dyce/common/common.dart';
+import 'package:Dyce/common/theme.data.dart';
+import 'package:Dyce/home/home.page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:Dice2Roll/user_repository/user.repository.dart';
-import 'package:Dice2Roll/login/login.dart';
+import 'package:Dyce/user_repository/user.repository.dart';
+import 'package:Dyce/login/login.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -45,7 +46,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final UserRepository userRepository;
-  final String title = 'Dice2Roll';
+  final String title = 'Dyce';
 
   MyApp({Key key, @required this.userRepository}) : super(key: key);
 
@@ -55,17 +56,18 @@ class MyApp extends StatelessWidget {
       title: title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: AppColors.primaryColor
       ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticationUninitialized) {
-            return SplashPage();
+            return SplashPage(title: title);
           }
           if (state is AuthenticationAuthenticated) {
             return HomePage(title: title);
           }
           if (state is AuthenticationUnauthenticated) {
+            // return SplashPage(title: title);
             return LoginPage(userRepository: userRepository);
           }
           if (state is AuthenticationLoading) {

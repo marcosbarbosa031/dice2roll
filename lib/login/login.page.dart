@@ -1,10 +1,11 @@
 
-import 'package:Dice2Roll/login/login.form.dart';
+import 'package:Dyce/common/theme.data.dart';
+import 'package:Dyce/login/login.form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:Dice2Roll/user_repository/user.repository.dart';
-import 'package:Dice2Roll/authentication/authentication.dart';
-import 'package:Dice2Roll/login/login.dart';
+import 'package:Dyce/user_repository/user.repository.dart';
+import 'package:Dyce/authentication/authentication.dart';
+import 'package:Dyce/login/login.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurpleAccent,
+      backgroundColor: AppColors.primaryColor,
       body: BlocProvider(
         create: (context) {
           return LoginBloc(

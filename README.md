@@ -1,4 +1,4 @@
-# Dice2Roll
+# Dyce
 
 A new Flutter project.
 
