@@ -29,7 +29,7 @@ class _DiceRollState extends State<DiceRoll> {
           children: <Widget>[
             // Left side Row
             Expanded(
-              flex: 4,
+              // flex: 7,
               child: Column(
                 // height: ,
                 children: <Widget>[
@@ -81,26 +81,6 @@ class _DiceRollState extends State<DiceRoll> {
                           }).toList(),
                         ),
                       ),
-                    ],
-                  ),
-
-                  // Bottom Row
-                  Row(
-                    children: <Widget>[
-                      // Delete Icon
-                      Expanded(
-                        flex: 1,
-                        child: SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: IconButton(
-                            icon: Icon(Icons.cancel),
-                            tooltip: "Remover",
-                            color: Colors.redAccent,
-                            onPressed: _isDisabled ? null : () {_removeThisRow(i);}
-                          ),
-                        )
-                      ),
 
                       // Mods Text
                       Expanded(
@@ -124,21 +104,45 @@ class _DiceRollState extends State<DiceRoll> {
                           inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                         ),
                       ),
+
+                      // Delete Icon
+                      Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: IconButton(
+                            icon: Icon(Icons.cancel),
+                            tooltip: "Remover",
+                            color: Colors.redAccent,
+                            onPressed: _isDisabled ? null : () {_removeThisRow(i);}
+                          ),
+                        )
+                      ),
+                    ],
+                  ),
+
+                  // Bottom Row
+                  Row(
+                    children: <Widget>[
+                      // Dice result
+                      Expanded(
+                        // flex: 3,
+                        child: Center(
+                          heightFactor: 1.5,
+                          child: Text(
+                            "${d['result']}",
+                            style: TextStyle(
+                              fontSize: 15
+                            ),
+                            // style: Theme.of(context).textTheme.display1,
+                          ),
+                        )
+                      ),
                     ],
                   )
                 ],
               ),
-            ),
-
-            // Left side Row
-            Expanded(
-              flex: 3,
-              child: Center(
-                child: Text(
-                  "${d['result']}",
-                  // style: Theme.of(context).textTheme.display1,
-                ),
-              )
             ),
           ],
         )
