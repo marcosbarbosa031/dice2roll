@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text('Logout', style: TextStyle(color: AppColors.primaryColor)),
               onTap: () {
-                BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                // BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
                 Navigator.pop(context);
               },
             ),
