@@ -18,22 +18,46 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(Icons.exit_to_app),
-            label: Text("Sair"),
-            textColor: Colors.white,
-            color: AppColors.primaryColor,
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
-            },
-          )
-        ]
+        // actions: <Widget>[
+        //   FlatButton.icon(
+        //     icon: Icon(Icons.exit_to_app),
+        //     label: Text("Sair"),
+        //     textColor: Colors.white,
+        //     color: AppColors.primaryColor,
+        //     onPressed: () {
+        //       BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+        //     },
+        //   )
+        // ]
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: null,
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                image: DecorationImage(image: AssetImage("assets/icon_w.png", ))
+              ),
+            ),
+            ListTile(
+              title: Text('Presets', style: TextStyle(color: AppColors.primaryColor)),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Logout', style: TextStyle(color: AppColors.primaryColor)),
+              onTap: () {
+                BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: DiceRoll()
     );
   }
-}
-
-class _removeThisRow {
 }
