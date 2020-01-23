@@ -63,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
                     keyboardType: TextInputType.text,
                     style:  new TextStyle(color: Colors.white, fontSize: 20),
                     decoration: InputDecoration(
-                      labelText: "Senha",
+                      labelText: "Password",
                       labelStyle: TextStyle(color: Colors.white)
                     ),
                     controller: _passwordController,
@@ -75,7 +75,7 @@ class _LoginFormState extends State<LoginForm> {
                       onPressed: state is! LoginLoading ? _onLoginButtonPressed : null,
                       color: Colors.white,
                       child: Text(
-                        "Entrar",
+                        "Login",
                         style: TextStyle(color: AppColors.primaryColor),
                       ),
                     ),
