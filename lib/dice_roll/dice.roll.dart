@@ -272,7 +272,7 @@ class _DiceRollState extends State<DiceRoll> {
                     height: 90,
                     child: RaisedButton(
                       // icon: Icon(Icons.autorenew, size: 32),
-                      child: Image.asset('assets/dice.png', width: 50),
+                      child: Image.asset('assets/dice.png', width: 56),
                       textColor: Colors.white,
                       color: AppColors.primaryColor,
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50)),
