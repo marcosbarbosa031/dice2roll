@@ -1,2 +1,2 @@
-export 'splash.page.dart';
+export 'splash.screen.dart';
 export 'loading.dart';

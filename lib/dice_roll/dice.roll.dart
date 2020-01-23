@@ -254,10 +254,10 @@ class _DiceRollState extends State<DiceRoll> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 5, left: 5),
+                  padding: EdgeInsets.only(right: 5),
                   child: RaisedButton.icon(
                     icon: Icon(Icons.sd_card),
-                    label: Text("Save"),
+                    label: Text("Save", style: TextStyle(fontSize: 18)),
                     color: Colors.white,
                     textColor: AppColors.primaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
@@ -267,11 +267,10 @@ class _DiceRollState extends State<DiceRoll> {
                   )
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 5, left: 5),
+                  padding: EdgeInsets.only(right: 10, left: 10),
                   child: ButtonTheme(
                     height: 90,
                     child: RaisedButton(
-                      // icon: Icon(Icons.autorenew, size: 32),
                       child: Image.asset('assets/dice.png', width: 56),
                       textColor: Colors.white,
                       color: AppColors.primaryColor,
@@ -283,10 +282,10 @@ class _DiceRollState extends State<DiceRoll> {
                   )
                 ),
                 Container(
-                  padding: EdgeInsets.only(right: 5),
+                  padding: EdgeInsets.only(left: 5),
                   child: RaisedButton.icon(
                     icon: Icon(Icons.add),
-                    label: Text("Add"),
+                    label: Text("Add", style: TextStyle(fontSize: 18)),
                     textColor: AppColors.primaryColor,
                     color: AppColors.sencondaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
