@@ -38,7 +38,7 @@ class _DiceRollState extends State<DiceRoll> {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text("Dados:"),
+                        child: Text("Dice:"),
                       ),
 
                       Expanded(
@@ -61,7 +61,7 @@ class _DiceRollState extends State<DiceRoll> {
                       
                       Expanded(
                         // flex: 1,
-                        child: Text("Qtd:"),
+                        child: Text("Qty:"),
                       ),
 
                       Expanded(
@@ -114,7 +114,7 @@ class _DiceRollState extends State<DiceRoll> {
                           width: 40,
                           child: IconButton(
                             icon: Icon(Icons.cancel),
-                            tooltip: "Remover",
+                            tooltip: "Remove",
                             color: Colors.redAccent,
                             onPressed: _isDisabled ? null : () {_removeThisRow(i);}
                           ),
@@ -184,7 +184,7 @@ class _DiceRollState extends State<DiceRoll> {
       sumTotal = sumTotal + sumDices;
     }
     setState(() {
-      total = "Total: $sumTotal"; 
+      total = "Result: $sumTotal"; 
     });
   }
 
@@ -254,28 +254,44 @@ class _DiceRollState extends State<DiceRoll> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(right: 5),
+                  padding: EdgeInsets.only(right: 5, left: 5),
                   child: RaisedButton.icon(
-                    icon: Icon(Icons.add),
-                    label: Text("Adicionar"),
+                    icon: Icon(Icons.sd_card),
+                    label: Text("Save"),
+                    color: Colors.white,
                     textColor: AppColors.primaryColor,
-                    color: AppColors.sencondaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () {
-                      _addDice();
+                      
                     },
                   )
                 ),
                 Container(
                   padding: EdgeInsets.only(right: 5, left: 5),
+                  child: ButtonTheme(
+                    height: 90,
+                    child: RaisedButton(
+                      // icon: Icon(Icons.autorenew, size: 32),
+                      child: Image.asset('assets/dice.png', width: 50),
+                      textColor: Colors.white,
+                      color: AppColors.primaryColor,
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50)),
+                      onPressed: () {
+                        _rollDice(dices);
+                      },
+                    )
+                  )
+                ),
+                Container(
+                  padding: EdgeInsets.only(right: 5),
                   child: RaisedButton.icon(
-                    icon: Icon(Icons.autorenew),
-                    label: Text("Rolar"),
-                    textColor: Colors.white,
-                    color: AppColors.primaryColor,
+                    icon: Icon(Icons.add),
+                    label: Text("Add"),
+                    textColor: AppColors.primaryColor,
+                    color: AppColors.sencondaryColor,
                     shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                     onPressed: () {
-                      _rollDice(dices);
+                      _addDice();
                     },
                   )
                 ),
