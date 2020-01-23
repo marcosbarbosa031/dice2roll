@@ -44,3 +44,4 @@ flutter:
   assets:
    - assets/icon.png
    - assets/icon_w.png
+   - assets/dice.png
