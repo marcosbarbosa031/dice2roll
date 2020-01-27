@@ -1,6 +1,7 @@
 import 'package:Dyce/authentication/authentication.dart';
 import 'package:Dyce/common/common.dart';
 import 'package:Dyce/common/theme.data.dart';
+import 'package:Dyce/dice_presets/dice.presets.page.dart';
 import 'package:Dyce/home/home.page.dart';
 import 'package:flutter/material.dart';
 
