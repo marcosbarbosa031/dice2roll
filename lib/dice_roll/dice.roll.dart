@@ -1,4 +1,5 @@
 
+import 'package:Dyce/common/scaffold.dart';
 import 'package:Dyce/common/theme.data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,8 +15,99 @@ class DiceRoll extends StatefulWidget {
 
 class _DiceRollState extends State<DiceRoll> {
   final rng = new Random();
-  List<Map<String, dynamic>> dices;
+  List<dynamic> dices;
   String total = "";
+
+  @override
+  Widget build(BuildContext context) {
+    setState(() {
+      dices = widget.preset["dices"];
+    });
+
+    return AppScaffold(
+      active: 1,
+      title: widget.preset["name"],
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              // Row of Dices
+              Expanded(
+                child: ListView(
+                  children: getDiceRows(dices),
+                ),
+              ),
+
+              // Result with Total Amount
+              Column(
+                children: <Widget>[
+                  Container(
+                    height: 36,
+                    child: Text(
+                      "$total",
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 24
+                      ),
+                    ),
+                  )
+                ],
+              ),
+
+              // Bottom Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(right: 5),
+                    child: RaisedButton.icon(
+                      icon: Icon(Icons.sd_card),
+                      label: Text("Save", style: TextStyle(fontSize: 18)),
+                      color: Colors.white,
+                      textColor: AppColors.primaryColor,
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () {
+                        
+                      },
+                    )
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(right: 10, left: 10),
+                    child: ButtonTheme(
+                      height: 90,
+                      child: RaisedButton(
+                        child: Image.asset('assets/dice.png', width: 56),
+                        textColor: Colors.white,
+                        color: AppColors.primaryColor,
+                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50)),
+                        onPressed: () {
+                          _rollDice(dices);
+                        },
+                      )
+                    )
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 5),
+                    child: RaisedButton.icon(
+                      icon: Icon(Icons.add),
+                      label: Text("Add", style: TextStyle(fontSize: 18)),
+                      textColor: AppColors.primaryColor,
+                      color: AppColors.sencondaryColor,
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                      onPressed: () {
+                        _addDice();
+                      },
+                    )
+                  ),
+                ],
+              )
+            ],
+          )
+        ),
+      )
+    );
+  }
 
   /// Create the List of Widgets that represents the Dice Row.
   /// 
@@ -205,7 +297,7 @@ class _DiceRollState extends State<DiceRoll> {
 
   void _removeThisRow(int index) {
     dices.removeAt(index);
-    List<Map<String, dynamic>> aux = dices;
+    List<dynamic> aux = dices;
     if (aux.length > 1) {
       setState(() {
         dices = aux;
@@ -218,106 +310,10 @@ class _DiceRollState extends State<DiceRoll> {
     }
   }
 
-  void getTotal(List<Map<String, dynamic>> dices) {
-
-  }
-
-  void initializeDices(List<Map<String, dynamic>> dices) {
+  void initializeDices(List<dynamic> dices) {
     setState(() {
       dices = dices;
 
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    setState(() {
-      dices = widget.preset["dices"];
-    });
-
-    return Scaffold(
-      appBar: AppBar(
-      title: Text(widget.preset["name"])
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              // Row of Dices
-              Expanded(
-                child: ListView(
-                  children: getDiceRows(dices),
-                ),
-              ),
-
-              // Result with Total Amount
-              Column(
-                children: <Widget>[
-                  Container(
-                    height: 36,
-                    child: Text(
-                      "$total",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 24
-                      ),
-                    ),
-                  )
-                ],
-              ),
-
-              // Bottom Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(right: 5),
-                    child: RaisedButton.icon(
-                      icon: Icon(Icons.sd_card),
-                      label: Text("Save", style: TextStyle(fontSize: 18)),
-                      color: Colors.white,
-                      textColor: AppColors.primaryColor,
-                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: () {
-                        
-                      },
-                    )
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(right: 10, left: 10),
-                    child: ButtonTheme(
-                      height: 90,
-                      child: RaisedButton(
-                        child: Image.asset('assets/dice.png', width: 56),
-                        textColor: Colors.white,
-                        color: AppColors.primaryColor,
-                        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(50)),
-                        onPressed: () {
-                          _rollDice(dices);
-                        },
-                      )
-                    )
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 5),
-                    child: RaisedButton.icon(
-                      icon: Icon(Icons.add),
-                      label: Text("Add", style: TextStyle(fontSize: 18)),
-                      textColor: AppColors.primaryColor,
-                      color: AppColors.sencondaryColor,
-                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                      onPressed: () {
-                        _addDice();
-                      },
-                    )
-                  ),
-                ],
-              )
-            ],
-          )
-        ),
-      )
-    );
   }
 }
