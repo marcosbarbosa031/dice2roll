@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:Dyce/authentication/authentication.dart';
 import 'package:Dyce/common/common.dart';
 import 'package:Dyce/common/theme.data.dart';
@@ -10,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:Dyce/user_repository/user.repository.dart';
 import 'package:Dyce/login/login.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -45,16 +49,21 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  MyApp({Key key, @required this.userRepository}) : super(key: key);
   final UserRepository userRepository;
   final String title = 'Dyce';
 
-  MyApp({Key key, @required this.userRepository}) : super(key: key);
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: title,
+      title: widget.title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: AppColors.primaryColor
@@ -65,11 +74,11 @@ class MyApp extends StatelessWidget {
             return SplashScreen();
           }
           if (state is AuthenticationAuthenticated) {
-            return HomePage(title: title);
+            return HomePage(title: widget.title);
           }
           if (state is AuthenticationUnauthenticated) {
-            return HomePage(title: title);
-            return LoginPage(userRepository: userRepository);
+            return HomePage(title: widget.title);
+            return LoginPage(userRepository: widget.userRepository);
           }
           if (state is AuthenticationLoading) {
             return LoadingIndicator();
