@@ -1,32 +1,28 @@
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:Dyce/common/drawer.dart';
 import 'package:Dyce/common/scaffold.dart';
 import 'package:Dyce/common/theme.data.dart';
 import 'package:Dyce/dice_roll/dice.roll.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Dicepresets extends StatefulWidget {
+  Dicepresets({Key key, this.presets}): super(key: key);
+  final presets;
   @override
   _DicepresetsState createState() => _DicepresetsState();
 }
 
 class _DicepresetsState extends State<Dicepresets> {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  List<Map<String, dynamic>> presets = [
-    {
-      "name": "Preset 1",
-      "dices": [
-        {'qtd': 1, 'type': 6, 'result': "", 'mod': 0},
-        {'qtd': 1, 'type': 20, 'result': "", 'mod': 0},
-      ]
-    },
-
-  ];
 
   @override
   Widget build(BuildContext context) {
+    // print("presets: "+widget.presets);
     return AppScaffold(
+      active: 0,
       title: "Presets",
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -35,7 +31,7 @@ class _DicepresetsState extends State<Dicepresets> {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                  children: getpresetsRow(presets),
+                  children: getpresetsRow(widget.presets),
                 ),
               )
             ],
