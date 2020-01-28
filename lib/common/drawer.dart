@@ -3,8 +3,9 @@ import 'package:Dyce/dice_presets/dice.presets.page.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
-  AppDrawer({Key key, this.active}): super(key: key);
+  AppDrawer({Key key, this.active, this.presets}): super(key: key);
   final int active;
+  final List<dynamic> presets;
 
   @override
   Widget build (BuildContext context) => Drawer(
@@ -25,7 +26,7 @@ class AppDrawer extends StatelessWidget {
             Navigator.pop(context);
             if (active != 0) {
               Navigator.push(context, MaterialPageRoute(
-                builder: (context) => Dicepresets()
+                builder: (context) => Dicepresets(presets: presets)
               ));
             }
           },

@@ -1,14 +1,20 @@
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:Dyce/common/scaffold.dart';
 import 'package:Dyce/common/theme.data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
 
+import 'package:path_provider/path_provider.dart';
+
 class DiceRoll extends StatefulWidget {
-  DiceRoll({Key key, this.preset}) : super(key: key);
+  DiceRoll({Key key, this.preset, this.presets}) : super(key: key);
 
   final Map<String, dynamic> preset;
+  final List<dynamic> presets;
 
   _DiceRollState createState() => _DiceRollState();
 }
@@ -26,6 +32,7 @@ class _DiceRollState extends State<DiceRoll> {
 
     return AppScaffold(
       active: 1,
+      presets: widget.presets,
       title: widget.preset["name"],
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -68,7 +75,7 @@ class _DiceRollState extends State<DiceRoll> {
                       textColor: AppColors.primaryColor,
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                       onPressed: () {
-                        
+                        _savePreset();
                       },
                     )
                   ),
@@ -285,7 +292,7 @@ class _DiceRollState extends State<DiceRoll> {
 
   void _addDice() {
     dices.add({'qtd': 1, 'type': 6, 'result': "", 'mod': 0});
-    List<Map<String, dynamic>> aux = dices;
+    List<dynamic> aux = dices;
     setState(() {
      dices = aux;
     });
@@ -310,10 +317,24 @@ class _DiceRollState extends State<DiceRoll> {
     }
   }
 
-  void initializeDices(List<dynamic> dices) {
-    setState(() {
-      dices = dices;
+  /// Save the dices preset.
 
-    });
+  void _savePreset() async {
+    widget.presets.add(widget.preset);
+
+    final file = await _localFile;
+    var resp = file.writeAsString(jsonEncode(widget.presets));
+    print("resp: $resp");
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    // For your reference print the AppDoc directory 
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/presets.json');
   }
 }

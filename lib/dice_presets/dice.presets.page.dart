@@ -23,6 +23,7 @@ class _DicepresetsState extends State<Dicepresets> {
     // print("presets: "+widget.presets);
     return AppScaffold(
       active: 0,
+      presets: widget.presets,
       title: "Presets",
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -50,12 +51,33 @@ class _DicepresetsState extends State<Dicepresets> {
           title: Text(p['name']),
           onTap: () {
              Navigator.of(context).push(MaterialPageRoute(
-               builder: (BuildContext context) => DiceRoll(preset: p)
+               builder: (BuildContext context) => DiceRoll(preset: p, presets: widget.presets)
              ));
           },
         )
       );
     }
+
+    Map<String, dynamic> defaultPreset = {
+      "name": "Default Preset",
+      "dices": [
+        {"qtd": 1, "type": 6, "result": "", "mod": 0}
+      ]
+    };
+
+
+    presetsRow.add(
+      ListTile(
+        title: Text("Create preset", style: TextStyle(
+          color: Colors.blueGrey
+        )),
+        onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => DiceRoll(preset: defaultPreset, presets: widget.presets)
+            ));
+        },
+      )
+    );
 
     return presetsRow;
   }

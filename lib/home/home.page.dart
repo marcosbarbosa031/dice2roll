@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map<String, dynamic>> presets = [];
+  List<dynamic> presets = [];
   Map<String, dynamic> defaultPreset = {
     "name": "Default Preset",
     "dices": [
@@ -27,14 +27,8 @@ class _HomePageState extends State<HomePage> {
     readcontent().then((content) {
       print("content: $content");
       if (content != false) {
-        List<Map<String, dynamic>> arr = new List<Map<String, dynamic>>();
-        arr.add(content);
         setState(() {
-          presets = arr;
-        });
-      } else {
-        setState(() {
-          presets = null;
+          presets = content;
         });
       }
     });
@@ -42,11 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (presets != null) {
-      return Dicepresets(presets: presets);
-    } else {
-      return DiceRoll(preset: defaultPreset);
-    }
+    return Dicepresets(presets: presets);
   }
 
   Future<String> get _localPath async {
@@ -57,13 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/data.txt');
-  }
-
-  Future<File> writeContent() async {
-    final file = await _localFile;
-    // Write the file
-    return file.writeAsString('{"name":"Preset 1","dices":[{"qtd":1,"type":6,"result":"","mod":0},{"qtd":1,"type":20,"result":"","mod":0}]}');
+    return File('$path/presets.json');
   }
 
   readcontent() async {
