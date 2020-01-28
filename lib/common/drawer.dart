@@ -21,7 +21,7 @@ class AppDrawer extends StatelessWidget {
         ),
 
         ListTile(
-          title: Text('Presets', style: TextStyle(color: AppColors.primaryColor)),
+          title: Text('Dice Presets', style: TextStyle(color: AppColors.primaryColor)),
           onTap: () {
             Navigator.pop(context);
             if (active != 0) {

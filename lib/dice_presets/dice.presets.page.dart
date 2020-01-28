@@ -24,7 +24,8 @@ class _DicepresetsState extends State<Dicepresets> {
     return AppScaffold(
       active: 0,
       presets: widget.presets,
-      title: "Presets",
+      title: "Dice Presets",
+      drawer: true,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
