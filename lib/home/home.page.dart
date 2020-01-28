@@ -14,12 +14,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> presets = [];
-  Map<String, dynamic> defaultPreset = {
-    "name": "Default Preset",
-    "dices": [
-      {"qtd": 1, "type": 6, "result": "", "mod": 0}
-    ]
-  };
 
   // @override
   void initState () {

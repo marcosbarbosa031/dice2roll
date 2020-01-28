@@ -60,7 +60,8 @@ class _DicepresetsState extends State<Dicepresets> {
     }
 
     Map<String, dynamic> defaultPreset = {
-      "name": "Default Preset",
+      "id": widget.presets.length,
+      "name": "Default Preset " + widget.presets.length.toString(),
       "dices": [
         {"qtd": 1, "type": 6, "result": "", "mod": 0}
       ]
