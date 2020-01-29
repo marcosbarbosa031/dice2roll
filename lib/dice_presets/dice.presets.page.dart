@@ -19,6 +19,7 @@ class _DicepresetsState extends State<Dicepresets> {
       presets: widget.presets,
       title: "Dice Presets",
       drawer: true,
+      addButton: true,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
@@ -52,27 +53,17 @@ class _DicepresetsState extends State<Dicepresets> {
       );
     }
 
-    Map<String, dynamic> defaultPreset = {
-      "id": widget.presets.length,
-      "name": "Default Preset " + widget.presets.length.toString(),
-      "dices": [
-        {"qtd": 1, "type": 6, "result": "", "mod": 0}
-      ]
-    };
+    if (presets.length == 0) {
+      presetsRow.add(
+        ListTile(
+          title: Text("There's no preset saved. Add a new preset.", style: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 15
+          )),
+        )
+      );
+    }
 
-
-    presetsRow.add(
-      ListTile(
-        title: Text("Create preset", style: TextStyle(
-          color: Colors.blueGrey
-        )),
-        onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => DiceRoll(preset: defaultPreset, presets: widget.presets)
-            ));
-        },
-      )
-    );
 
     return presetsRow;
   }
