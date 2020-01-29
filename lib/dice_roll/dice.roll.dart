@@ -23,6 +23,15 @@ class _DiceRollState extends State<DiceRoll> {
   final rng = new Random();
   List<dynamic> dices;
   String total = "";
+  final presetNameC = TextEditingController();
+  @override
+  void initState () {
+    super.initState();
+
+    presetNameC.value = presetNameC.value.copyWith(
+      text: widget.preset["name"]
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +85,7 @@ class _DiceRollState extends State<DiceRoll> {
                       textColor: AppColors.primaryColor,
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                       onPressed: () {
-                        _savePreset();
+                        showSaveDialog(context);
                       },
                     )
                   ),
@@ -321,11 +330,55 @@ class _DiceRollState extends State<DiceRoll> {
   /// Save the dices preset.
 
   void _savePreset() async {
-    widget.presets.add(widget.preset);
+    widget.preset["name"] = presetNameC.value.text;
+
+    if (widget.preset["id"] >= widget.presets.length) {
+      widget.presets.add(widget.preset);
+    }
 
     final file = await _localFile;
-    var resp = file.writeAsString(jsonEncode(widget.presets));
-    print("resp: $resp");
+    file.writeAsString(jsonEncode(widget.presets));
+  }
+
+  /// Display save preset dialog
+
+  Future showSaveDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Save Preset"),
+          content: TextFormField(
+            style:  new TextStyle(color: Colors.black, fontSize: 20),
+            controller: presetNameC,
+            decoration: InputDecoration(
+              labelText: "Preset name",
+              labelStyle: TextStyle(color: AppColors.primaryColor)
+            ),
+          ),
+          actions: <Widget>[
+            Container(
+              child: FlatButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+
+            Container(
+              child: FlatButton(
+                child: Text("Salvar"),
+                onPressed: () {
+                  _savePreset();
+                  Navigator.of(context).pop();
+                },
+              ),
+            )
+          ],
+        );
+      }
+    );
   }
 
   Future<String> get _localPath async {
