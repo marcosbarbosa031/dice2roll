@@ -1,13 +1,6 @@
-
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:Dyce/common/drawer.dart';
 import 'package:Dyce/common/scaffold.dart';
-import 'package:Dyce/common/theme.data.dart';
 import 'package:Dyce/dice_roll/dice.roll.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
 class Dicepresets extends StatefulWidget {
   Dicepresets({Key key, this.presets}): super(key: key);
