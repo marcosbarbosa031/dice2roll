@@ -44,6 +44,7 @@ class _DiceRollState extends State<DiceRoll> {
       presets: widget.presets,
       title: widget.preset["name"],
       drawer: false,
+      addButton: false,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
