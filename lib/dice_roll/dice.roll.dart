@@ -45,6 +45,8 @@ class _DiceRollState extends State<DiceRoll> {
       title: widget.preset["name"],
       drawer: false,
       addButton: false,
+      removeButton: true,
+      preset: widget.preset,
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Center(
@@ -369,7 +371,7 @@ class _DiceRollState extends State<DiceRoll> {
 
             Container(
               child: FlatButton(
-                child: Text("Salvar"),
+                child: Text("Save"),
                 onPressed: () {
                   _savePreset();
                   Navigator.of(context).pop();
@@ -384,7 +386,6 @@ class _DiceRollState extends State<DiceRoll> {
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
-    // For your reference print the AppDoc directory 
     return directory.path;
   }
 

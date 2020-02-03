@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
-    // For your reference print the AppDoc directory 
     return directory.path;
   }
 
